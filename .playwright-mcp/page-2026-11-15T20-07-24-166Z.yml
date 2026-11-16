@@ -1,0 +1,14 @@
+- main [ref=e2]:
+  - link "Kōhi" [ref=e4] [cursor=pointer]:
+    - /url: index.html
+  - paragraph [ref=e6]
+  - generic [ref=e7]:
+    - heading "Hola, Ana" [level=1] [ref=e8]
+    - paragraph [ref=e9]: Gracias por esperar con nosotros.
+    - generic [ref=e10]:
+      - paragraph [ref=e11]: "Eres el #4 de 4"
+      - paragraph [ref=e13]: 3 persona(s) delante de ti
+    - generic [ref=e14]:
+      - generic [ref=e15]: QR-0004
+      - paragraph [ref=e16]: Tu código de acceso (ficticio)
+    - button "CERRAR SESIÓN" [ref=e17] [cursor=pointer]

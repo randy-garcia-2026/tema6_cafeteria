@@ -1,0 +1,119 @@
+/* Kōhi — estilo compartido: oscuro, minimalista, acento ámbar */
+:root {
+  --bg: #0b0a09;
+  --card: #151311;
+  --line: #2a2622;
+  --text: #ece6dc;
+  --muted: #8f867a;
+  --gold: #d9a441;
+  --gold-soft: rgba(217, 164, 65, 0.12);
+  --error: #e0705f;
+  --ok: #8fbf7f;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Shippori Mincho", "Noto Serif JP", "Hiragino Mincho ProN", Georgia, serif;
+  font-weight: 400;
+  line-height: 1.7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.25rem;
+}
+
+main { width: 100%; max-width: 420px; text-align: center; }
+main.wide { max-width: 520px; }
+
+.logo {
+  font-size: clamp(4rem, 16vw, 7rem);
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  color: var(--text);
+  line-height: 1;
+}
+.logo a { color: inherit; text-decoration: none; }
+.logo.small { font-size: 2.2rem; margin-bottom: 0.5rem; }
+
+.divider {
+  width: 40px; height: 1px;
+  background: var(--gold);
+  margin: 1.8rem auto;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  letter-spacing: 0.25em;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+.phrase { color: var(--muted); font-style: italic; margin: 0 auto 2.5rem; max-width: 32ch; }
+
+h1 { font-size: 1.5rem; font-weight: 400; letter-spacing: 0.1em; margin-bottom: 0.4rem; }
+.lead { color: var(--muted); margin-bottom: 1.8rem; font-size: 0.95rem; }
+
+/* Botones */
+.actions { display: flex; flex-direction: column; gap: 0.9rem; align-items: center; }
+.btn {
+  display: inline-block;
+  width: 100%; max-width: 280px;
+  padding: 0.85rem 1.5rem;
+  font: inherit; font-size: 0.95rem; letter-spacing: 0.15em;
+  text-decoration: none; text-align: center;
+  cursor: pointer;
+  border: 1px solid var(--gold);
+  background: var(--gold); color: var(--bg);
+  transition: all 0.2s;
+}
+.btn:hover { background: transparent; color: var(--gold); }
+.btn.ghost { background: transparent; color: var(--gold); }
+.btn.ghost:hover { background: var(--gold-soft); }
+.btn:disabled { opacity: 0.5; cursor: wait; }
+
+/* Formularios */
+form { text-align: left; display: flex; flex-direction: column; gap: 1.1rem; }
+label { font-size: 0.8rem; letter-spacing: 0.15em; color: var(--muted); display: block; margin-bottom: 0.3rem; }
+input {
+  width: 100%;
+  padding: 0.7rem 0.2rem;
+  font: inherit; color: var(--text);
+  background: transparent;
+  border: none; border-bottom: 1px solid var(--line);
+  outline: none; transition: border-color 0.2s;
+}
+input:focus { border-bottom-color: var(--gold); }
+form .btn { align-self: center; margin-top: 0.8rem; }
+
+.msg { min-height: 1.5rem; font-size: 0.9rem; text-align: center; margin-top: 1rem; }
+.msg.error { color: var(--error); }
+.msg.ok { color: var(--ok); }
+
+.success-box { border: 1px solid var(--gold); background: var(--gold-soft); padding: 2rem 1rem; }
+.success-box .big { font-size: 1.6rem; color: var(--gold); margin-bottom: 0.5rem; }
+
+.link { margin-top: 1.6rem; font-size: 0.85rem; color: var(--muted); }
+.link a { color: var(--gold); text-decoration: none; border-bottom: 1px solid transparent; }
+.link a:hover { border-bottom-color: var(--gold); }
+
+/* Dashboard */
+.card { border: 1px solid var(--line); background: var(--card); padding: 1.8rem 1.5rem; margin-bottom: 1.2rem; }
+.position { font-size: 1.8rem; color: var(--gold); letter-spacing: 0.05em; margin-bottom: 1.2rem; }
+.progress { height: 6px; background: var(--line); overflow: hidden; }
+.progress-bar { height: 100%; width: 0; background: var(--gold); transition: width 1s ease; }
+.progress-label { font-size: 0.8rem; color: var(--muted); margin-top: 0.6rem; letter-spacing: 0.1em; }
+
+.qr {
+  width: 150px; height: 150px; margin: 0 auto 0.8rem;
+  border: 2px solid var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--gold); letter-spacing: 0.1em;
+  background:
+    repeating-linear-gradient(45deg, var(--gold-soft) 0 8px, transparent 8px 16px);
+}
+.qr-note { font-size: 0.8rem; color: var(--muted); }
+.logout { background: none; border: none; color: var(--muted); font: inherit; font-size: 0.85rem; cursor: pointer; letter-spacing: 0.1em; }
+.logout:hover { color: var(--gold); }

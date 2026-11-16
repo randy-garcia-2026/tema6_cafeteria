@@ -1,0 +1,18 @@
+- main [ref=f2e2]:
+  - link "Kōhi" [ref=f2e4] [cursor=pointer]:
+    - /url: index.html
+  - heading "Bienvenido de nuevo" [level=1] [ref=f2e6]
+  - paragraph [ref=f2e7]: Entra para ver tu lugar en la lista.
+  - generic [ref=f2e8]:
+    - generic [ref=f2e9]:
+      - generic [ref=f2e10]: EMAIL
+      - textbox "EMAIL" [ref=f2e11]
+    - generic [ref=f2e12]:
+      - generic [ref=f2e13]: CONTRASEÑA
+      - textbox "CONTRASEÑA" [ref=f2e14]
+    - button "ENTRAR" [ref=f2e15] [cursor=pointer]
+  - paragraph [ref=f2e16]
+  - paragraph [ref=f2e17]:
+    - text: ¿Aún no estás en la lista?
+    - link "Únete" [ref=f2e18] [cursor=pointer]:
+      - /url: register.html

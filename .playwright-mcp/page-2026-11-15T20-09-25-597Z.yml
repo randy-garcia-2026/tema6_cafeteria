@@ -1,0 +1,9 @@
+- main [ref=e2]:
+  - heading "Kōhi" [level=1] [ref=e3]
+  - paragraph [ref=e5]: Café de especialidad.Próxima apertura.
+  - paragraph [ref=e7]: Una taza, un instante. El buen café se sirve despacio.
+  - generic [ref=e8]:
+    - link "Unirme a la lista" [ref=e9] [cursor=pointer]:
+      - /url: register.html
+    - link "Ya tengo cuenta" [ref=e10] [cursor=pointer]:
+      - /url: login.html

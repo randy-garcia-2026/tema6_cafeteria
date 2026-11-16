@@ -1,0 +1,12 @@
+- main [ref=f1e2]:
+  - link "Kōhi" [ref=f1e4] [cursor=pointer]:
+    - /url: index.html
+  - generic [ref=f1e26]:
+    - generic [ref=f1e27]:
+      - paragraph [ref=f1e28]: ¡Estás en la lista!
+      - paragraph [ref=f1e29]:
+        - text: "Tu posición:"
+        - strong [ref=f1e30]: "#5"
+    - paragraph [ref=f1e31]:
+      - link "Entrar a mi panel" [ref=f1e32] [cursor=pointer]:
+        - /url: login.html

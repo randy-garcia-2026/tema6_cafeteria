@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kōhi — Iniciar sesión</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <div class="logo small"><a href="index.html">Kōhi</a></div>
+    <div class="divider"></div>
+    <h1>Bienvenido de nuevo</h1>
+    <p class="lead">Entra para ver tu lugar en la lista.</p>
+
+    <form id="form" novalidate>
+      <div><label for="email">EMAIL</label><input id="email" type="email" autocomplete="email" required></div>
+      <div><label for="password">CONTRASEÑA</label><input id="password" type="password" autocomplete="current-password" required></div>
+      <button class="btn" type="submit" id="submit">ENTRAR</button>
+    </form>
+    <p class="msg" id="msg"></p>
+    <p class="link">¿Aún no estás en la lista? <a href="register.html">Únete</a></p>
+  </main>
+
+  <script>
+    const form = document.getElementById('form');
+    const msg = document.getElementById('msg');
+    const btn = document.getElementById('submit');
+
+    function show(text, type) { msg.className = 'msg ' + type; msg.textContent = text; }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = form.email.value.trim();
+      const password = form.password.value;
+      if (!email || !password) return show('Escribe tu email y contraseña.', 'error');
+
+      btn.disabled = true; msg.textContent = '';
+      try {
+        const res = await fetch('/api/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+        const data = await res.json();
+        if (!res.ok) return show(data.error || 'No se pudo iniciar sesión.', 'error');
+        localStorage.setItem('kohi_token', data.token);
+        show('Acceso correcto. Entrando…', 'ok');
+        window.location.href = 'dashboard.html';
+      } catch {
+        show('No se pudo conectar con el servidor.', 'error');
+      } finally {
+        btn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kōhi — Unirme a la lista</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <div class="logo small"><a href="index.html">Kōhi</a></div>
+    <div class="divider"></div>
+
+    <section id="formBox">
+      <h1>Unirme a la lista</h1>
+      <p class="lead">Reserva tu lugar para la apertura.</p>
+      <form id="form" novalidate>
+        <div><label for="name">NOMBRE</label><input id="name" type="text" autocomplete="name" required></div>
+        <div><label for="email">EMAIL</label><input id="email" type="email" autocomplete="email" required></div>
+        <div><label for="password">CONTRASEÑA</label><input id="password" type="password" autocomplete="new-password" required></div>
+        <div><label for="confirm">CONFIRMAR CONTRASEÑA</label><input id="confirm" type="password" autocomplete="new-password" required></div>
+        <button class="btn" type="submit" id="submit">REGISTRARME</button>
+      </form>
+      <p class="msg" id="msg"></p>
+      <p class="link">¿Ya tienes cuenta? <a href="login.html">Inicia sesión</a></p>
+    </section>
+
+    <section id="successBox" hidden>
+      <div class="success-box">
+        <p class="big">¡Estás en la lista!</p>
+        <p>Tu posición: <strong id="pos" style="color:var(--gold)"></strong></p>
+      </div>
+      <p class="link"><a href="login.html">Entrar a mi panel</a></p>
+    </section>
+  </main>
+
+  <script>
+    const form = document.getElementById('form');
+    const msg = document.getElementById('msg');
+    const btn = document.getElementById('submit');
+
+    function showError(text) { msg.className = 'msg error'; msg.textContent = text; }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const name = form.name.value.trim();
+      const email = form.email.value.trim();
+      const password = form.password.value;
+
+      // Validaciones en el navegador antes de llamar al servidor
+      if (!name || !email || !password || !form.confirm.value) return showError('Completa todos los campos.');
+      if (password.length < 6) return showError('La contraseña debe tener al menos 6 caracteres.');
+      if (password !== form.confirm.value) return showError('Las contraseñas no coinciden.');
+
+      btn.disabled = true; msg.textContent = '';
+      try {
+        const res = await fetch('/api/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, password })
+        });
+        const data = await res.json();
+        if (!res.ok) return showError(data.error || 'No se pudo completar el registro.');
+        document.getElementById('pos').textContent = '#' + data.position;
+        document.getElementById('formBox').hidden = true;
+        document.getElementById('successBox').hidden = false;
+      } catch {
+        showError('No se pudo conectar con el servidor.');
+      } finally {
+        btn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
